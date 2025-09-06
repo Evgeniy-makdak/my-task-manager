@@ -1,69 +1,67 @@
+Техническое задание:
+
+Техническое задание: "Personal Task Manager" (Персональный менеджер задач)
+Цель: Разработать одностраничное приложение (SPA) для управления персональными задачами (TODO-лист с расширенным функционалом), используя React.js, MUI (Material-UI) и архитектуру Feature-Sliced Design (FSD).
+
+Стек технологий:
+
+Язык: JavaScript / TypeScript (рекомендуется TS для лучшего опыта)
+
+Библиотека UI: React
+
+Библиотека компонентов: MUI (Material-UI) v5
+
+Управление состоянием: Context API (встроенный в React) + хук useReducer (для сложной логики состояния задач) или Zustand (как более простая альтернатива Redux, опционально).
+
+Маршрутизация: React Router v6
+
+Архитектура: Feature-Sliced Design (FSD)
+
+Сборка: Vite (рекомендуется для скорости) или Create React App.
+
+Функциональные требования (что должно делать приложение):
+Аутентификация (имитация):
+
+Реализовать экраны логина и регистрации (UI только!).
+
+Нет необходимости в настоящем бэкенде. После нажатия кнопки "Login" данные просто сохраняются в состояние приложения (например, Context) и LocalStorage.
+
+Защищённые маршруты: если пользователь не "авторизован", он не может попасть на главную страницу с задачами и перенаправляется на страницу логина.
+
+CRUD для задач:
+
+Create (Создание): Форма для добавления новой задачи. Поля: заголовок, описание (опционально), дата дедлайна (опционально), выбор важности (низкая, средняя, высокая).
+
+Read (Просмотр): Отображение списка задач в виде карточек (MUI Card) или таблицы (MUI DataGrid). Показывать все поля задачи.
+
+Update (Редактирование): Возможность отметить задачу как выполненную (чекбокс). Возможность открыть задачу в модальном окне или на отдельной странице для редактирования всех полей.
+
+Delete (Удаление): Кнопка удаления задачи с подтверждением действия (через MUI Dialog).
+
+Фильтрация и сортировка:
+
+Фильтрация задач по статусу (все, активные, завершённые).
+
+Сортировка по дате создания (новые/старые сначала) и по важности.
+
+Поиск:
+
+Поле поиска, которое фильтрует задачи по заголовку и описанию в реальном времени.
+
+Валидация форм:
+
+Валидация форм логина/регистрации и формы добавления/редактирования задачи (например, заголовок не может быть пустым, email должен быть валидным). Использовать Formik + Yup или React Hook Form.
+
+Взаимодействие с API (имитация):
+
+Для работы с задачами использовать имитацию бэкенда. Создать модуль api/tasks.js, который использует setTimeout и Promise для симуляции задержки сети. Данные хранить в localStorage или в памяти (при перезагрузке страницы данные не пропадут, если используем localStorage).
+
+Визуальный интерфейс:
+
+Адаптивный layout, который корректно отображается на мобильных устройствах и 桌面 ных компьютерах.
+
+Использовать тему MUI, кастомизировать несколько цветов (primary, secondary).
+
+Реализовать Toasts (уведомления) для отображения успешных действий или ошибок (например, "Задача добавлена", "Ошибка при удалении"). Использовать библиотеку notistack или react-hot-toast.
+
 # React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
